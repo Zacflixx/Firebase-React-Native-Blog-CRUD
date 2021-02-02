@@ -1,17 +1,15 @@
 import React from 'react';
-import {View, Text ,Image, StyleSheet} from 'react-native';
-
+import {View, Text , StyleSheet, ScrollView} from 'react-native';
+import Header from './components/Header';
 const App = () => {
 return (
    <View
       style={styles.container}
     >
 
-      
-      <Text style={styles.texter}> 
-          Hello Curtis!
-      </Text>
-<Image source={{uri:'https://blog.crowdbotics.com/content/images/2020/03/React-Firebase-Featured-Image.png'}} style={styles.img}/>
+      <Header title='Shopping List'  />
+      <Header title='Eating List'  />
+      <Header title='Fishing List'  />
 
 
     </View>
@@ -22,20 +20,10 @@ return (
 
 const styles = StyleSheet.create({
 container:{
-  flex:1, 
-  justifyContent: 'center', 
-  alignItems :'center'},
+  flex:1,
+  paddingTop: 30
+ }
 
-texter: {
-    color:'darkslateblue', 
-    fontSize: 30 },
-
-img:{
-      width: 200,
-      height: 100,
-      borderRadius:200 / 1
-
-    }
   });
 
 export default App;
