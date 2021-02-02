@@ -8,8 +8,6 @@ return (
     >
 
       <Header title='Shopping List'  />
-      <Header title='Eating List'  />
-      <Header title='Fishing List'  />
 
 
     </View>
