@@ -10,8 +10,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "native-base": "^2.15.2",
     "react": "16.13.1",
     "react-native": "0.63.4",
+    "react-native-get-random-values": "^1.5.1",
     "react-native-vector-icons": "^8.0.0",
     "uuidv4": "^6.2.6"
   },

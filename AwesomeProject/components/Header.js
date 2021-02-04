@@ -13,7 +13,9 @@ return (
   
 );
 };
-
+// Header.defaultProps = {
+//  title: 'Alabama List'
+// }
 const styles = StyleSheet.create({
 header:{
   height:60,
@@ -22,7 +24,7 @@ header:{
 texter:{
  color: '#fff',
  fontSize: 23,
- textAlign: 'center'
+ textAlign: 'center',
 },
 
   });
