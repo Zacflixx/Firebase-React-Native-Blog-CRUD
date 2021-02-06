@@ -29,7 +29,7 @@ export default function App() {
         <Text style={styles.sectionTitle} >Today's tasks are </Text>
         <View style={styles.items} >
 
-         <Text>  {/* this is where tasks will go*/} </Text>  
+         <Text>  {/* this is where tasks will go indeed*/} </Text>  
          <Task text={'Task 1'}/>
          <Task text={'Task 2'}/>
          
@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
   taskWrapper: {
 paddingTop: 80,
 paddingHorizontal: 20,
-
 
   },
 sectionTitle: {
