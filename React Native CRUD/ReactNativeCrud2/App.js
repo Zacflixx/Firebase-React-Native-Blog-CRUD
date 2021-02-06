@@ -26,11 +26,13 @@ export default function App() {
     {/* //Today's task */}
     <View style={styles.taskWrapper}>
 
-        <Text style={styles.sectionTitle} >Today's tasks </Text>
+        <Text style={styles.sectionTitle} >Today's tasks are </Text>
         <View style={styles.items} >
 
          <Text>  {/* this is where tasks will go*/} </Text>  
-         <Task/>
+         <Task text={'Task 1'}/>
+         <Task text={'Task 2'}/>
+         
 
 
          </View>
@@ -48,13 +50,15 @@ const styles = StyleSheet.create({
 paddingTop: 80,
 paddingHorizontal: 20,
 
+
   },
 sectionTitle: {
 fontSize: 24,
 color: 'black',
 fontWeight: 'bold',
+
 },
 items: {
-
+  marginTop: 30,
 },
 });
