@@ -1,84 +1,171 @@
-
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text, 
-  StatusBar,
-} from 'react-native';
+import React, {useState} from 'react';
+import { KeyboardAvoidingView,ImageBackground, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
 import Task from './components/Task';
 
 export default function App() {
-  
+  const [task, setTask] = useState();
+  const [taskItems, setTaskItems] = useState([]);
 
+  const handleAddTask = () => {
+    Keyboard.dismiss();
+    setTaskItems([...taskItems, task])
+    setTask(null);
+  }
+
+  const completeTask = (index) => {
+    let itemsCopy = [...taskItems];
+    itemsCopy.splice(index, 1);
+    setTaskItems(itemsCopy)
+  }
+const CheckBox = ({ selected, onPress, style, textStyle, size = 30, color = '#211f30', text = '', ...props}) => (
+    <TouchableOpacity style={[styles.checkBox, style]} onPress={onPress} {...props}>
+        <Icon
+            size={size}
+            color={color}
+            name={ selected ? 'check-box' : 'check-box-outline-blank'}
+        />
+
+        <Text style={textStyle}> {text} </Text>
+    </TouchableOpacity>
+)
   return (
-    <View style={styles.container}> 
-    {/* //Today's task */}
-    <View style={styles.taskWrapper}>
+    
+    <View style={styles.container}>
+      {/* <ImageBackground source = {{uri:'https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png'}} >
+     
+     */}
+      {/* Added this scroll view to enable scrolling when list gets longer than the page */}
+      
 
-        <Text style={styles.sectionTitle} >Today's Tasks </Text>
-        <View style={styles.items} >
+      {/* Today's Tasks */}
+      <View style={styles.tasksWrapper}>
+        <Text style={styles.sectionTitle}>Today's tasks </Text>
+        
+        <View style={styles.items}>
+          {/* This is where the tasks will go! */}
+          <ScrollView style={styles.scroller}>
+          {
+            taskItems.map((item, index) => {
+              return (
+                <TouchableOpacity style={styles.zole}  key={index}  >
+                  <Task text={item} /> 
+                  <TouchableOpacity  style={styles.circular} key={index}  onPress={() => completeTask(index)} >
+                    <Text style={styles.addText2}>X</Text>
+                  </TouchableOpacity>
+                </TouchableOpacity>
+                
+              )
+            })
+          }
+        
+          </ScrollView>
+        </View>
+        
+      </View>
+        
+   
 
-         <Text>  {/* this is where tasks will go indeed */} </Text> 
-         <ScrollView style={styles.scroller}> 
-         <Task text={'Task 1'}/>
-         <Task text={'Task 2'}/>
-         <Task text={'Task 3'}/>
-         <Task text={'Task 4'}/> 
-         <Task text={'Task 5'}/>
-         <Task text={'Task 6'}/>
-         <Task text={'Task 7'}/>
-         <Task text={'Task 8'}/>
-         <Task text={'Task 9'}/>
-         <Task text={'Task 10'}/>
-         
-         </ScrollView>
-
-
-         </View>
-    </View>
+      {/* Write a task */}
+      {/* Uses a keyboard avoiding view which ensures the keyboard does not cover the items on screen */}
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.writeTaskWrapper}
+      >
+        <TextInput style={styles.input} placeholder={'Write a task'} value={task} onChangeText={text => setTask(text)} />
+        <TouchableOpacity onPress={() => handleAddTask()}>
+          <View style={styles.addWrapper}>
+            <Text style={styles.addText}>+</Text>
+          </View>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
+      {/* </ImageBackground> */}
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
+  zole: {
+flexDirection:'row',
+flex:1,
+justifyContent:'space-around',
+},
+  circular: {
+width: 42,
+height: 42,
+borderColor: '#55BCF6',
+borderWidth: 2,
+borderRadius: 5,
+flex:0.2
+},
+  	scroller: {
+  backgroundColor: '#d6f2ff',
+  paddingTop: 20,
+  paddingBottom: 2,
+ 
+  borderColor: '#cbe4f2',
+borderWidth: 2,
+borderRadius: 5,
+},
   container: {
-   flex: 1,
-    backgroundColor: '#E8EAED',  
+    flex: 1,
+    backgroundColor: '#849abd',
   },
-  taskWrapper: {
-paddingTop: 80,
-paddingHorizontal: 20,
-
-  },
-sectionTitle: {
+   taskWrapper: {
+paddingTop: 50,
+paddingHorizontal: 20,},
+	sectionTitle: {
 fontSize: 24,
 color: 'black',
 fontWeight: 'bold',
 alignSelf: 'center',
-
+marginTop: 40,
+ borderColor: '#55BCF6',
+borderWidth: 0.5,
 },
-items: {
-  marginTop: 20,
+ 	items: {
+  marginTop: 30,
   marginBottom: 120,
-
+   paddingRight: 10,
+    paddingLeft: 10,
+    paddingBottom: 160,
 },
-scroller: {
-  backgroundColor: '#d6f2ff',
-  paddingTop: 20,
-  paddingBottom: 2,
-  borderColor: '#55BCF6',
+  writeTaskWrapper: {
+    position: 'absolute',
+    bottom: 40,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+  input: {
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    backgroundColor: '#FFF',
+    borderRadius: 60,
+    borderColor: '#C0C0C0',
+    borderWidth: 1,
+    width: 250,
+  },
+	addWrapper: {
+  height: 60,
+width: 60,
+backgroundColor: '#FFF',
+borderRadius: 60,
+justifyContent:'center',
+alignItems: 'center',
+	  borderColor: '#cbe4f2',
 borderWidth: 2,
-borderRadius: 5,
+},
+	addText: {
+fontSize: 40,
+textAlign: 'center',
+marginBottom: 5,
+},
+	addText2: {
+fontSize: 26,
+textAlign: 'center',
+color:'#0d3e59',
+alignItems: 'center',
+marginBottom:80,
 },
 });
