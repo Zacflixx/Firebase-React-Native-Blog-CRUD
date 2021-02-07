@@ -26,13 +26,23 @@ export default function App() {
     {/* //Today's task */}
     <View style={styles.taskWrapper}>
 
-        <Text style={styles.sectionTitle} >Today's tasks are </Text>
+        <Text style={styles.sectionTitle} >Today's Tasks </Text>
         <View style={styles.items} >
 
-         <Text>  {/* this is where tasks will go indeed */} </Text>  
+         <Text>  {/* this is where tasks will go indeed */} </Text> 
+         <ScrollView style={styles.scroller}> 
          <Task text={'Task 1'}/>
          <Task text={'Task 2'}/>
+         <Task text={'Task 3'}/>
+         <Task text={'Task 4'}/> 
+         <Task text={'Task 5'}/>
+         <Task text={'Task 6'}/>
+         <Task text={'Task 7'}/>
+         <Task text={'Task 8'}/>
+         <Task text={'Task 9'}/>
+         <Task text={'Task 10'}/>
          
+         </ScrollView>
 
 
          </View>
@@ -55,9 +65,20 @@ sectionTitle: {
 fontSize: 24,
 color: 'black',
 fontWeight: 'bold',
+alignSelf: 'center',
 
 },
 items: {
-  marginTop: 30,
+  marginTop: 20,
+  marginBottom: 120,
+
+},
+scroller: {
+  backgroundColor: '#d6f2ff',
+  paddingTop: 20,
+  paddingBottom: 2,
+  borderColor: '#55BCF6',
+borderWidth: 2,
+borderRadius: 5,
 },
 });
