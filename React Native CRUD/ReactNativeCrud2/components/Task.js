@@ -17,6 +17,7 @@ const Task = (props) => {
  )
 
  }
+ var myBoolean = true;
  const styles = StyleSheet.create({
 item: {
       flex:1,
