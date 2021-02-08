@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import { KeyboardAvoidingView,ImageBackground, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
+import { KeyboardAvoidingView,ImageBackground, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView ,Alert, Platform, TouchableHighlight } from 'react-native';
 import Task from './components/Task';
-// import images from './assets/index';
+import CheckBox from '@react-native-community/checkbox';
 
 export default function App() {
   const [task, setTask] = useState();
@@ -11,24 +11,35 @@ export default function App() {
     Keyboard.dismiss();
     setTaskItems([...taskItems, task])
     setTask(null);
+
+    setCheckItems([...checkItems, toggleCheckBox])
+    setToggleCheckBox(null);
+    
   }
 
-  const completeTask = (index) => {
+  const completeTask = (index ) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
+    
     setTaskItems(itemsCopy)
-  }
-const CheckBox = ({ selected, onPress, style, textStyle, size = 30, color = '#211f30', text = '', ...props}) => (
-    <TouchableOpacity style={[styles.checkBox, style]} onPress={onPress} {...props}>
-        <Icon
-            size={size}
-            color={color}
-            name={ selected ? 'check-box' : 'check-box-outline-blank'}
-        />
 
-        <Text style={textStyle}> {text} </Text>
-    </TouchableOpacity>
-)
+    let checkCopy = [...checkItems];
+    checkCopy.splice(index, 1);
+    setCheckItems(checkCopy)
+  }
+
+
+  
+
+
+  
+const [toggleCheckBox, setToggleCheckBox] = useState();
+const [checkItems, setCheckItems] = useState([]);
+
+
+   
+
+    
   return (
     
     <View style={styles.container}>
@@ -48,12 +59,22 @@ const CheckBox = ({ selected, onPress, style, textStyle, size = 30, color = '#21
         <View style={styles.items}>
           {/* This is where the tasks will go! */}
           <ScrollView style={styles.scroller}>
+            
           {
-            taskItems.map((item, index) => {
+            taskItems.map((item, index ) => {
               return (
                 <TouchableOpacity style={styles.zole}  key={index}  >
                   <Task text={item} /> 
-                  <TouchableOpacity  style={styles.circular} key={index}  onPress={() => completeTask(index)} >
+                  <CheckBox style={styles.CheckBox}
+                  key={index }
+    disabled={false}
+    value={toggleCheckBox}
+  />
+                  <TouchableOpacity  style={styles.circular} key={index}  onPress=
+                  {() => {
+     completeTask(index);
+    }} >
+                    
                     <Text style={styles.addText2}>X</Text>
                   </TouchableOpacity>
                 </TouchableOpacity>
@@ -88,7 +109,20 @@ const CheckBox = ({ selected, onPress, style, textStyle, size = 30, color = '#21
 }
 
 const styles = StyleSheet.create({
-    ImageBackground: {
+    CheckBox: {
+    color: 'red',
+    backgroundColor: '#FFF',
+  
+fontSize: 26,
+textAlign: 'center',
+color:'#0d3e59',
+alignItems: 'center',
+marginTop: 8,
+marginRight: 10,
+opacity: 0.7,
+
+  },
+  ImageBackground: {
     flex: 1,
     position: 'relative',
 
@@ -114,11 +148,14 @@ flex:0.2
  
   borderColor: '#cbe4f2',
 borderWidth: 2,
-borderRadius: 5,
+borderRadius:15,
+opacity: .9,
+
 },
   container: {
     flex: 1,
     backgroundColor: '#849abd',
+    
   },
    taskWrapper: {
 paddingTop: 50,
@@ -135,9 +172,10 @@ borderWidth: 0.5,
  	items: {
   marginTop: 30,
   marginBottom: 120,
-   paddingRight: 10,
-    paddingLeft: 10,
+   paddingRight: 25,
+    paddingLeft: 25,
     paddingBottom: 160,
+    
 },
   writeTaskWrapper: {
     position: 'absolute',
