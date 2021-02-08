@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import { KeyboardAvoidingView,ImageBackground, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
+import { KeyboardAvoidingView,ImageBackground, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
 import Task from './components/Task';
+// import images from './assets/index';
 
 export default function App() {
   const [task, setTask] = useState();
@@ -31,9 +32,12 @@ const CheckBox = ({ selected, onPress, style, textStyle, size = 30, color = '#21
   return (
     
     <View style={styles.container}>
-      {/* <ImageBackground source = {{uri:'https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png'}} >
+       <ImageBackground style={styles.ImageBackground} 
+      //  source = {{uri:'https://i.pinimg.com/736x/71/0d/70/710d704e49cecf06c3303c67ed432c31.jpg'}} 
+       source={require('./assets/bg.jpg')}
+       >
+        
      
-     */}
       {/* Added this scroll view to enable scrolling when list gets longer than the page */}
       
 
@@ -78,12 +82,18 @@ const CheckBox = ({ selected, onPress, style, textStyle, size = 30, color = '#21
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
-      {/* </ImageBackground> */}
+      </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+    ImageBackground: {
+    flex: 1,
+    position: 'relative',
+
+  },
+
   zole: {
 flexDirection:'row',
 flex:1,
