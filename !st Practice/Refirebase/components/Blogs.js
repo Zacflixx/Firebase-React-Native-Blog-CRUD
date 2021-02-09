@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-class Edit extends Component {
+class Blogs extends Component {
   render() {
     return (
       <View style={Styles.container}>
-        <Text>I am Edit screen </Text>
+        <Text>I am Blogggggs screen </Text>
       </View>
     );
   }
@@ -20,4 +20,4 @@ const Styles = StyleSheet.create({
   },
 });
 
-export default Edit;
+export default Blogs;

@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import Routes from './components/Routes';
 
-class Edit extends Component {
+class App extends Component {
   render() {
-    return (
-      <View style={Styles.container}>
-        <Text>I am Edit screen </Text>
-      </View>
-    );
+    return <Routes />;
   }
 }
-
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -20,4 +16,4 @@ const Styles = StyleSheet.create({
   },
 });
 
-export default Edit;
+export default App;
