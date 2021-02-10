@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Routes from './components/Routes';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+import ReduxThunk from 'redux-thunk';
+import reducers from './reducers';
 
 class App extends Component {
   render() {
-    return <Routes />;
+    const state = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+
+    return (
+      <Provider store={state}>
+        <Routes />
+      </Provider>
+    );
   }
 }
-// const Styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#fff',
-//   },
-// });
-
 export default App;

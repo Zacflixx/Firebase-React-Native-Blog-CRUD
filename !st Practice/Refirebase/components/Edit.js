@@ -5,7 +5,7 @@ class Edit extends Component {
   render() {
     return (
       <View style={Styles.container}>
-        <Text>I am Edit screen </Text>
+        <Text>I am probably the edit screen </Text>
       </View>
     );
   }

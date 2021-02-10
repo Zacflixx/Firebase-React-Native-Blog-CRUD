@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
-import Edit from './Edit';
 
 class Blogs extends Component {
   render() {
