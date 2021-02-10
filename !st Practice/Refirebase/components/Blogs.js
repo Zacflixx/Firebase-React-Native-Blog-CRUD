@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
+import Edit from './Edit';
 
 class Blogs extends Component {
   render() {
     return (
       <View style={Styles.container}>
-        <Text>I am Blogggggs screen </Text>
+        <Text>I am Blogs screen </Text>
+        <Button
+          title="Go to Edit"
+          onPress={() => this.props.navigation.navigate('Edit')} //(from routes)
+        />
       </View>
     );
   }

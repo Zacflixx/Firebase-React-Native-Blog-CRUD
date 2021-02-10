@@ -16,15 +16,6 @@ const NavStack = createStackNavigator({
   },
 });
 
-// const DownStack = createStackNavigator({
-//   NavStack: {
-//     screen:NavStack
-//   },
-//   Post: {
-//     screen:Post
-//   },
-// })
-
 const BottomTab = createBottomTabNavigator({
   NavStack: {
     screen: NavStack,
